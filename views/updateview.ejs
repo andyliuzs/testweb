@@ -1,0 +1,44 @@
+<%- include header.ejs %>
+<!--<form name="updateform" action="/update" method="post">-->
+<!--<input type="hidden" name="_id" value="<%= user[0]._id.toString() %>"/>-->
+<!--<input type="text" name="name" value="<%= user[0].name %>"/>-->
+<!--<input type="text" name="password" value="<%= user[0].password %>"/>-->
+<!--<button type="submit">修改</button>-->
+<!--</form>-->
+<script type="text/javascript">
+    $(function () {
+        insertNameGetfocus()
+    })
+</script>
+<div style=" margin:0 auto;width: 400px;">
+    <form class="form-horizontal " name="updateform" action="/update" method="post">
+
+        <div class="control-group">
+            <label class="control-label " for="insert_name">名称</label>
+            <div class="controls ">
+                <input type="text" name="name" id="insert_name" placeholder="请输入名称" class="form-control input-sm "
+                       value="<%= user[0].name %>"/>
+                <input type="hidden" name="_id" value="<%= user[0]._id.toString() %>"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">密码</label>
+            <div class="controls">
+                <input type="text" name="password" id="password" placeholder="请输入密码" value="<%= user[0].password %>"
+                       class="form-control "/>
+            </div>
+        </div>
+        <div class="control-group align_center">
+            <div class="controls">
+                <button type="submit" id="user_update_btn" class="btn btn-primary " style="width: 100px;margin: 20px">
+                    修改
+                </button>
+                <button type="button" id="_back_btn" class="btn btn-danger " style="width: 100px;margin: 20px"
+                        onclick=" javascript:history.back(-1)">
+                    返回
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<%- include footer.ejs %>

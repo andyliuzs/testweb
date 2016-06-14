@@ -1,0 +1,105 @@
+<%- include header.ejs %>
+<!-- Button trigger modal -->
+<%- include modal.ejs %>
+
+<script type="text/javascript">
+/*    $(function(){
+        $(".pagination").createPage({
+            totalPage:'<%=page.pageCount%>',
+            currPage:'<%=page.pageNumber%>',
+            turndown:'true',
+            backFn:function(p){
+                console.log("回调函数："+p);
+                $('#thisPageCount').attr('value', 10);
+                $('#pageNumber').attr('value', p);
+                $('#searchform').submit();
+            }
+        });
+    })*/
+</script>
+<div class="align_center">
+    <form class="form-inline" name="searchform" id="searchform" action="/userlist" method="post">
+        <input type="hidden" id="pageNumber" name="pageNumber"/>
+        <input type="hidden" id="thisPageCount" name="thisPageCount"/>
+        <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" value="<%= name %>" name="name" id="name" class="form-control" placeholder="请输入用户名"/>
+        </div>
+        <div class="form-group">
+            <label for="password">密码</label>
+            <input type="text" name="password" value="<%= password %>" id=password class="form-control"
+                   placeholder="请输入密码"/>
+        </div>
+        <button type="submit" id="user_search_btn" class="btn btn-primary btn_normal_style">查询</button>
+        <button type="button" class="btn btn-info btn_normal_style" data-toggle="modal" data-target="#addModal">
+            添加
+        </button>
+    </form>
+</div>
+<div class="container">
+    <table class="table table-hover table-condensed">
+        <thead>
+        <th>
+            用户名
+        </th>
+        <th>密码</th>
+        <th>操作</th>
+        </thead>
+        <% for(var i = 0;i < userlist.length;i++){ %>
+        <tr>
+            <td>
+                <%= userlist[i].name %>
+            </td>
+            <td>
+                <%= userlist[i].password %>
+            </td>
+            <td>
+                <form id="delupdate<%= userlist[i]._id.toString() %>" action="/delete" method="post">
+                    <input type="hidden" name="_id" value="<%= userlist[i]._id.toString() %>">
+                    <button type="button" id="update" class="btn btn-info"
+                            onclick="updateUser('<%= userlist[i]._id.toString() %>')">修改
+                    </button>
+                    <button type="button" id="delete" class="btn btn-danger" data-toggle="modal"
+                            data-target="#delModal" onclick="setDelid('<%= userlist[i]._id.toString() %>')">删除
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+
+
+    <nav class="align_center" style="display: <%= (page.pageCount <= 1) ? 'none' : 'block' %>">
+
+        <ul class="pagination">
+            <li>
+                <a href="#" onclick="goPage(1)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <% var outPutCount = 0;for(var i = 1;i <= page.pageCount;i++){ %>
+
+
+
+            <% outPutCount++; console.log('outPutCount' + outPutCount + ',maxPageCount' + page.maxPageCount) %>
+            <% if (i == page.pageNumber){ %>
+            <li class="active"><a href="#" onclick="goPage('<%= i %>')"><%= i %></a></li>
+            <% }else { %>
+            <li><a href="#" onclick="goPage('<%= i %>')"><%= i %></a></li>
+            <% } %>
+
+            <!--<% if(i == page.pageCount - 1){ %>-->
+            <!--<li><a href="#">...</a></li>-->
+            <!--<% } %>-->
+
+            <% } %>
+
+            <li>
+                <a href="#" aria-label="Next" onclick="goPage(<%= page.pageCount %>)">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<%- include footer.ejs %>

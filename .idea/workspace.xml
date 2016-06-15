@@ -58,8 +58,8 @@
       <file leaf-file-name="userlist.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/userlist.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
+            <state relative-caret-position="46">
+              <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
               <folding>
                 <element signature="e#2709#2773#0#HTML" expanded="true" />
               </folding>
@@ -239,12 +239,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1465704303134</updated>
-      <workItem from="1465704304376" duration="80945000" />
+      <workItem from="1465704304376" duration="81542000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80945000" />
+    <option name="totallyTimeSpent" value="81542000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -639,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/userlist.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
+        <state relative-caret-position="46">
+          <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
           <folding>
             <element signature="e#2709#2773#0#HTML" expanded="true" />
           </folding>

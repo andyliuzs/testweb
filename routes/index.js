@@ -1,6 +1,8 @@
 var express = require('express');
-var User = require('../data/user')
+var User = require('../data/User')
+var Live = require('../data/Live')
 var router = express.Router();
+var Model = require('../data/Model')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -11,6 +13,57 @@ router.get('/helloworld', function (req, res, next) {
     res.render('helloworld', {title: 'hello world'});
 })
 
+// router.get('/testscoket', function (req, res, next) {
+//     res.render('testsocket', {title: '测试socketio'});
+// })
+router.get('/geturl', function (req, res, next) {
+    var model = req.body.model;
+    var buildVersion = req.body.buildVersion;
+    console.log('get test datta model=' + model + ",buildVersion=" + buildVersion);
+    var returnVar = Model[model.toLowerCase()];
+    if (returnVar == '' || returnVar == 'undefined' || returnVar == undefined) {
+        returnVar = Model.default;
+    }
+    console.log('return data =' + returnVar);
+    res.end(returnVar);
+
+});
+router.post('/geturl', function (req, res, next) {
+    var model = req.body.model;
+    var buildVersion = req.body.buildVersion;
+    console.log('get test datta model=' + model + ",buildVersion=" + buildVersion);
+    var returnVar = Model[model.toLowerCase()];
+    if (returnVar == '' || returnVar == 'undefined' || returnVar == undefined) {
+        returnVar = Model['default'];
+    }
+    console.log('return data =' + returnVar);
+    res.end(returnVar);
+});
+
+
+router.post('/testupload', function (req, res, next) {
+    var str;
+    try {
+        str = JSON.stringify(req.body);
+        console.log('get test datta =' + str.toString());
+    } catch (error) {
+        console.log(error)
+    }
+
+
+    var returnVar = "{'result':'failed'}";
+    if (str != null && str != "") {
+        returnVar = "{'result':'ok'}";
+    }
+    res.end(returnVar);
+});
+
+// router.post('/userlist', function (req, res, next) {
+//     var model = req.body.model;
+//     var buildVersion = req.body.buildVersion;
+//     console.log('post test datta model=' + model + ",buildVersion=" + buildVersion);
+//     res.end("{'url':'http://www.baidu.com'}");
+// });
 router.post('/userlist', function (req, res, next) {
 
 
@@ -41,7 +94,6 @@ router.post('/userlist', function (req, res, next) {
         var query = {};
         query['name'] = new RegExp(name);
         query['password'] = new RegExp(password);
-
 
         User.count(query, function (err, totalCount) {
             if (err) {

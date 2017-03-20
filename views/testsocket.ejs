@@ -1,0 +1,22 @@
+
+<%- include header.ejs %>
+
+<script type="text/javascript">
+    var socket = io.connect('http://localhost:8080');
+    socket.on('new_message', function (data) {
+        alert(data.result);
+    });
+    socket.on('server_connection', function (data) {
+        alert(data.result);
+    });
+    function sendmessage() {
+        var text = document.getElementById('send_text').value;
+        socket.emit('new_message', text);
+        alert(text);
+    }
+</script>
+<div class="container">
+    <input type="text" id="send_text"/>
+    <input type="button" onclick="sendmessage()" value="发送"/>
+</div>
+<%- include footer.ejs %>
